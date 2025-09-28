@@ -12,16 +12,16 @@ import java.util.List;
 
 public class CustomerController 
 {
-     private final CustomerServices customerServices;
+     private final CustomerServices m_customerServices;
 
     public CustomerController(CustomerServices customerServices) {
-        this.customerServices = customerServices;
+        this.m_customerServices = customerServices;
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Customer>> getAllCustomers() 
     {
-        List<Customer> customers = customerServices.getAll();
+        List<Customer> customers = m_customerServices.getAll();
 
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
