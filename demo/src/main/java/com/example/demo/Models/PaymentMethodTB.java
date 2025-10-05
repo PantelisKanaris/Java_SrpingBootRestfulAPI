@@ -4,10 +4,13 @@ import lombok.*;
 import java.util.Date;	
 
 @Entity
+@NoArgsConstructor
+@Data
 @Table(name = "PaymentMethod")
 public class PaymentMethodTB 
 {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PaymentMethodId")
 	private Long PaymentMethodId;
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -32,5 +35,4 @@ public class PaymentMethodTB
 	@Column(name = "CreatedAt")
 	private Date CreatedAt;
 
-	
 }
