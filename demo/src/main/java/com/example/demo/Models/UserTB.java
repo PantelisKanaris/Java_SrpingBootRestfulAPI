@@ -17,35 +17,40 @@ public class UserTB {
 	@Id
 	@Column(name = "UserId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long UserId;
+	private Long userId;
 
 	@Column(name = "Name")
-	private String Name;
+	private String name;
+
 	@Column(name = "Password")
-	private String Password;
+	private String password;
+
 	@Column(name = "Email")
-	private String Email;
+	private String email;
+
 	@Column(name = "PhoneNumber")
-	private String PhoneNumber;
+	private String phoneNumber;
+
 	@Column(name = "AvatarUrl")
-	private String AvatarUrl;
+	private String avatarUrl;
+
 	@Column(name = "PayAccountToken")
-	private String PayAccountToken;
+	private String payAccountToken;
 
-		@org.hibernate.annotations.CreationTimestamp
-		@Column(name = "CreatedAt")
-		private LocalDateTime CreatedAt;
+	@org.hibernate.annotations.CreationTimestamp
+	@Column(name = "CreatedAt")
+	private LocalDateTime createdAt;
 
-	@OneToMany(mappedBy = "User")
-	private List<PaymentMethodTB> PaymentMethods = new ArrayList<>();
+	@OneToMany(mappedBy = "user")
+	private List<PaymentMethodTB> paymentMethods = new ArrayList<>();
 
-	@OneToMany(mappedBy = "Leader", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<SessionTB> CreatedSessions = new ArrayList<>();
+	@OneToMany(mappedBy = "leader", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<SessionTB> createdSessions = new ArrayList<>();
 
-	@OneToMany(mappedBy = "User", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<SessionUserTB> SessionMemberships = new ArrayList<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<SessionUserTB> sessionMemberships = new ArrayList<>();
 
-	@OneToMany(mappedBy = "User", cascade = CascadeType.ALL, orphanRemoval = true)
-	private java.util.List<LeaderPayoutTB> LeaderPayouts = new java.util.ArrayList<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<LeaderPayoutTB> leaderPayouts = new ArrayList<>();
 
 }

@@ -15,42 +15,42 @@ public class ReceiptTB
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ReceiptId")
-    private Long ReceiptId;
+    private Long receiptId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SessionId", referencedColumnName = "SessionId", nullable = false)
-    private SessionTB Session;
+    private SessionTB session;
 
     @Column(name = "ImageUrl", length = 1000)
-    private String ImageUrl;
+    private String imageUrl;
 
     // NVARCHAR(MAX) – store as String. Column name in DB is [Json]; in JPA just use "Json".
     @Column(name = "Json", columnDefinition = "NVARCHAR(MAX)")
-    private String Json;
+    private String json;
 
     @Column(name = "CurrencyCode", length = 3, nullable = false)
-    private String CurrencyCode;
+    private String currencyCode;
 
     @Column(name = "SubTotalAmount", precision = 19, scale = 4)
-    private BigDecimal SubTotalAmount;
+    private BigDecimal subTotalAmount;
 
     @Column(name = "TaxTotalAmount", precision = 19, scale = 4)
-    private BigDecimal TaxTotalAmount;
+    private BigDecimal taxTotalAmount;
 
     @Column(name = "ServiceFeeAmount", precision = 19, scale = 4)
-    private BigDecimal ServiceFeeAmount;
+    private BigDecimal serviceFeeAmount;
 
     @Column(name = "TipAmount", precision = 19, scale = 4)
-    private BigDecimal TipAmount;
+    private BigDecimal tipAmount;
 
     @Column(name = "DiscountAmount", precision = 19, scale = 4)
-    private BigDecimal DiscountAmount;
+    private BigDecimal discountAmount;
 
     // Computed column in SQL Server → read-only in JPA
     @Column(name = "GrandTotal", precision = 19, scale = 4, insertable = false, updatable = false)
-    private BigDecimal GrandTotal;
+    private BigDecimal grandTotal;
 
     @Column(name = "ExtractedAt", nullable = false)
-    private LocalDateTime ExtractedAt;
+    private LocalDateTime extractedAt;
 	
 }

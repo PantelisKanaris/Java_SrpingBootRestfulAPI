@@ -16,38 +16,38 @@ public class SessionTB {
 	@Column(name = "SessionId")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long SessionId;
+	private Long sessionId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
-	private UserTB Leader;
+	private UserTB leader;
 
 	@Column(name = "CurrencyCode")
-	private String CurrencyCode;
+	private String currencyCode;
 
 	@Column(name = "JoinCode")
-	private String JoinCode;
+	private String joinCode;
 
 	@Column(name = "BlueToothRoomId")
-	private String BluetoothRoomId;
+	private String bluetoothRoomId;
 
 	@Column(name = "Status")
-	private String Status;
+	private String status;
 
 	@org.hibernate.annotations.CreationTimestamp
 	@Column(name = "StartedAt")
-	private LocalDateTime CreatedAt;
+	private LocalDateTime createdAt;
 
 	@Column(name = "ClosedAt")
-	private Date ClosedAt;
+	private LocalDateTime closedAt;
 
-	@OneToMany(mappedBy = "Session", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<SessionUserTB> Participants = new ArrayList<>();
+	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<SessionUserTB> participants = new ArrayList<>();
 
-	@OneToMany(mappedBy = "Session", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ReceiptTB> Receipts = new ArrayList<>();
+	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ReceiptTB> receipts = new ArrayList<>();
 
-	@OneToMany(mappedBy = "Session", cascade = CascadeType.ALL, orphanRemoval = true)
-	private java.util.List<LeaderPayoutTB> LeaderPayouts = new java.util.ArrayList<>();
+	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<LeaderPayoutTB> leaderPayouts = new ArrayList<>();
 
 }

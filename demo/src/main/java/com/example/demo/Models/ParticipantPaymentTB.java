@@ -20,36 +20,36 @@ public class ParticipantPaymentTB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ParticipantPayment_id")
-	private Long ParticipantPaymentId;
+	private Long participantPaymentId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "SessionUserId", referencedColumnName = "SessionUserId", nullable = false)
-	private SessionUserTB SessionUser;
+	private SessionUserTB sessionUser;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "Method", length = 10, nullable = false)
-	private PaymentMethodType Method; // CARD / CASH
+	private PaymentMethodType method; // CARD / CASH
 
 	@Column(name = "AmountDue", precision = 19, scale = 4, nullable = false)
-	private BigDecimal AmountDue;
+	private BigDecimal amountDue;
 
 	@Column(name = "CurrencyCode", length = 3, nullable = false)
-	private String CurrencyCode;
+	private String currencyCode;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "Status", length = 16, nullable = false)
-	private ParticipantPaymentStatus Status = ParticipantPaymentStatus.PENDING;
+	private ParticipantPaymentStatus status = ParticipantPaymentStatus.PENDING;
 
 	@Column(name = "Provider", length = 40)
-	private String Provider;
+	private String provider;
 
 	@Column(name = "ProviderPaymentID", length = 255)
-	private String ProviderPaymentId;
+	private String providerPaymentId;
 
 		@org.hibernate.annotations.CreationTimestamp
 		@Column(name = "CreatedAt", nullable = false)
-		private LocalDateTime CreatedAt;
+	private LocalDateTime createdAt;
 
 		@Column(name = "UpdatedAt")
-		private LocalDateTime UpdatedAt;
+	private LocalDateTime updatedAt;
 }

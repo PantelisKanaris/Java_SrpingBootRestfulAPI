@@ -16,19 +16,19 @@ public class ItemClaimsTB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ItemClaimsId")
-	private Long ItemClaimsId;
+	private Long itemClaimsId;
 
 	// Each claim belongs to a specific ReceiptItem
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "ReceiptItemId", referencedColumnName = "ReceiptItemId", nullable = false)
-	private ReceiptItemTB ReceiptItem;
+	private ReceiptItemTB receiptItem;
 
 	// Each claim also belongs to a specific SessionUser (the person claiming it)
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "SessionUserId", referencedColumnName = "SessionUserId", nullable = false)
-	private SessionUserTB SessionUser;
+	private SessionUserTB sessionUser;
 
 		@org.hibernate.annotations.CreationTimestamp
 		@Column(name = "CreatedAt", nullable = false)
-		private LocalDateTime CreatedAt;
+	private LocalDateTime createdAt;
 }

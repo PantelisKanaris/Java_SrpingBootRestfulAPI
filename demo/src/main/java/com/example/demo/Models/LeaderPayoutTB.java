@@ -15,37 +15,37 @@ public class LeaderPayoutTB
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "LeaderPayoutId")
-	private Long LeaderPayoutId;
+    private Long leaderPayoutId;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "SessionId", referencedColumnName = "SessionId", nullable = false)
-	private SessionTB Session;
+    private SessionTB session;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="UserId",referencedColumnName="UserId",nullable=false)
-	private UserTB  User;
+    private UserTB user;
 	  @Column(name = "Amount", precision = 19, scale = 4, nullable = false)
-    private BigDecimal Amount;
+    private BigDecimal amount;
 
     @Column(name = "CurrencyCode", length = 3, nullable = false)
-    private String CurrencyCode;
+    private String currencyCode;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "Status", length = 16, nullable = false)
-    private LeaderPayoutStatus Status = LeaderPayoutStatus.PENDING;
+    private LeaderPayoutStatus status = LeaderPayoutStatus.PENDING;
 
     @Column(name = "Provider", length = 40)
-    private String Provider;
+    private String provider;
 
     @Column(name = "ProviderPayoutId", length = 255)
-    private String ProviderPayoutId;
+    private String providerPayoutId;
 
 	@org.hibernate.annotations.CreationTimestamp
     @Column(name = "CreatedAt", nullable = false)
-    private LocalDateTime CreatedAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "ExecutedAt")
-    private LocalDateTime ExecutedAt;
+    private LocalDateTime executedAt;
 
 
 	

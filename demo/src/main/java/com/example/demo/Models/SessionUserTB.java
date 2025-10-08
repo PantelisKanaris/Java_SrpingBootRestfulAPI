@@ -13,34 +13,34 @@ public class SessionUserTB {
 	@Column(name = "SessionUserId")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long SessionUserId;
+	private Long sessionUserId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "SessionId", referencedColumnName = "SessionId", nullable = false)
-	private SessionTB Session;
+	private SessionTB session;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
-	private UserTB User;
-	
+	private UserTB user;
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "Role", nullable = false)
-	private Role IsLeader;
+	private Role isLeader;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ParticipantStatus", nullable = false)
-	private UserStatus ParticipantStatus;
+	private UserStatus participantStatus;
 
 	@Column(name = "JoinedAt", nullable = false)
-	private LocalDateTime JoinedAt;
+	private LocalDateTime joinedAt;
 
 	@Column(name = "DoneAt")
-	private LocalDateTime DoneAt;
+	private LocalDateTime doneAt;
 
-	@OneToMany(mappedBy = "SessionUser", cascade = CascadeType.ALL, orphanRemoval = true)
-	private java.util.List<ItemClaimsTB> ClaimedItems = new java.util.ArrayList<>();
+	@OneToMany(mappedBy = "sessionUser", cascade = CascadeType.ALL, orphanRemoval = true)
+	private java.util.List<ItemClaimsTB> claimedItems = new java.util.ArrayList<>();
 
-	@OneToMany(mappedBy = "SessionUser", cascade = CascadeType.ALL, orphanRemoval = true)
-	private java.util.List<ParticipantPaymentTB> Payments = new java.util.ArrayList<>();
+	@OneToMany(mappedBy = "sessionUser", cascade = CascadeType.ALL, orphanRemoval = true)
+	private java.util.List<ParticipantPaymentTB> payments = new java.util.ArrayList<>();
 
 }

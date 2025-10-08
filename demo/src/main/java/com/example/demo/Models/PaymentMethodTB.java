@@ -12,29 +12,29 @@ public class PaymentMethodTB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PaymentMethodId")
-	private Long PaymentMethodId;
+	private Long paymentMethodId;
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	// name is the foreign key column in this table
 	// referencedColumnName is the primary key column in the target table
 	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
-	private UserTB User;
+	private UserTB user;
 	@Column(name = "ProviderName")
-	private String ProviderName;
+	private String providerName;
 	@Column(name = "MethodReference")
-	private String MethodReference;
+	private String methodReference;
 	@Column(name = "Brand")
-	private String Brand;
+	private String brand;
 	@Column(name = "Last4")
-	private String Last4;
+	private String last4;
 	@Column(name = "ExpMonth")
-	private Integer ExpMonth;
+	private Integer expMonth;
 	@Column(name = "ExpYear")
-	private Integer ExpYear;
+	private Integer expYear;
 	@Column(name = "IsDefault")
-	private Boolean IsDefault;
+	private Boolean isDefault;
 
 	@org.hibernate.annotations.CreationTimestamp
 	@Column(name = "CreatedAt")
-	private LocalDateTime CreatedAt;
+	private LocalDateTime createdAt;
 
 }
