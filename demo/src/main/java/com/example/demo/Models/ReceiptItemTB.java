@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -19,6 +22,7 @@ public class ReceiptItemTB {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "ReceiptId", referencedColumnName = "ReceiptId", nullable = false)
+	@JsonBackReference
 	private ReceiptTB receipt;
 
 	@Column(name = "LineNumber")
@@ -44,6 +48,7 @@ public class ReceiptItemTB {
 	private String notes;
 
 	@OneToMany(mappedBy = "receiptItem", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private java.util.List<ItemClaimsTB> claims = new java.util.ArrayList<>();
 
 }

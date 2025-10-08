@@ -2,6 +2,8 @@ package com.example.demo.Models;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +21,7 @@ public class ReceiptTB
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SessionId", referencedColumnName = "SessionId", nullable = false)
+	@JsonBackReference
     private SessionTB session;
 
     @Column(name = "ImageUrl", length = 1000)

@@ -6,6 +6,10 @@ import lombok.*;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 
 @Entity
@@ -20,6 +24,7 @@ public class SessionTB {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
+	@JsonBackReference 
 	private UserTB leader;
 
 	@Column(name = "CurrencyCode")
@@ -42,12 +47,15 @@ public class SessionTB {
 	private LocalDateTime closedAt;
 
 	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<SessionUserTB> participants = new ArrayList<>();
 
 	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<ReceiptTB> receipts = new ArrayList<>();
 
 	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<LeaderPayoutTB> leaderPayouts = new ArrayList<>();
 
 }

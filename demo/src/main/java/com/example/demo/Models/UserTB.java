@@ -3,6 +3,7 @@ package com.example.demo.Models;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,15 +43,19 @@ public class UserTB {
 	private LocalDateTime createdAt;
 
 	@OneToMany(mappedBy = "user")
+	@JsonManagedReference
 	private List<PaymentMethodTB> paymentMethods = new ArrayList<>();
 
 	@OneToMany(mappedBy = "leader", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<SessionTB> createdSessions = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<SessionUserTB> sessionMemberships = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<LeaderPayoutTB> leaderPayouts = new ArrayList<>();
 
 }

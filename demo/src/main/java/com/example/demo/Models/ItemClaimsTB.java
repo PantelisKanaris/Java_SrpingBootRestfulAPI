@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -21,14 +23,16 @@ public class ItemClaimsTB {
 	// Each claim belongs to a specific ReceiptItem
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "ReceiptItemId", referencedColumnName = "ReceiptItemId", nullable = false)
+	@JsonBackReference
 	private ReceiptItemTB receiptItem;
 
 	// Each claim also belongs to a specific SessionUser (the person claiming it)
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "SessionUserId", referencedColumnName = "SessionUserId", nullable = false)
+	@JsonBackReference
 	private SessionUserTB sessionUser;
 
-		@org.hibernate.annotations.CreationTimestamp
-		@Column(name = "CreatedAt", nullable = false)
+	@org.hibernate.annotations.CreationTimestamp
+	@Column(name = "CreatedAt", nullable = false)
 	private LocalDateTime createdAt;
 }

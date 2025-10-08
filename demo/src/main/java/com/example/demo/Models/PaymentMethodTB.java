@@ -3,6 +3,7 @@ package com.example.demo.Models;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @NoArgsConstructor
@@ -17,6 +18,7 @@ public class PaymentMethodTB {
 	// name is the foreign key column in this table
 	// referencedColumnName is the primary key column in the target table
 	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
+	@JsonBackReference
 	private UserTB user;
 	@Column(name = "ProviderName")
 	private String providerName;

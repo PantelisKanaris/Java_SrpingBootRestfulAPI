@@ -2,6 +2,8 @@ package com.example.demo.Models;
 
 import com.example.demo.Models.Enums.ParticipantPaymentStatus;
 import com.example.demo.Models.Enums.PaymentMethodType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ public class ParticipantPaymentTB {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "SessionUserId", referencedColumnName = "SessionUserId", nullable = false)
+	@JsonBackReference
 	private SessionUserTB sessionUser;
 
 	@Enumerated(EnumType.STRING)
@@ -46,10 +49,10 @@ public class ParticipantPaymentTB {
 	@Column(name = "ProviderPaymentID", length = 255)
 	private String providerPaymentId;
 
-		@org.hibernate.annotations.CreationTimestamp
-		@Column(name = "CreatedAt", nullable = false)
+	@org.hibernate.annotations.CreationTimestamp
+	@Column(name = "CreatedAt", nullable = false)
 	private LocalDateTime createdAt;
 
-		@Column(name = "UpdatedAt")
+	@Column(name = "UpdatedAt")
 	private LocalDateTime updatedAt;
 }

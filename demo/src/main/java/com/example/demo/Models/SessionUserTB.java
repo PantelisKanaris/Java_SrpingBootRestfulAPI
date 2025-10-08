@@ -1,6 +1,9 @@
 package com.example.demo.Models;
 
 import com.example.demo.Models.Enums.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -17,10 +20,12 @@ public class SessionUserTB {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "SessionId", referencedColumnName = "SessionId", nullable = false)
+	@JsonBackReference
 	private SessionTB session;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
+	@JsonBackReference
 	private UserTB user;
 
 	@Enumerated(EnumType.STRING)
@@ -38,9 +43,11 @@ public class SessionUserTB {
 	private LocalDateTime doneAt;
 
 	@OneToMany(mappedBy = "sessionUser", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private java.util.List<ItemClaimsTB> claimedItems = new java.util.ArrayList<>();
 
 	@OneToMany(mappedBy = "sessionUser", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private java.util.List<ParticipantPaymentTB> payments = new java.util.ArrayList<>();
 
 }
