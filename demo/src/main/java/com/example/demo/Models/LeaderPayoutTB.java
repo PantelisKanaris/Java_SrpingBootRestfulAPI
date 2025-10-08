@@ -5,6 +5,7 @@ import java.time.*;
 
 import com.example.demo.Models.Enums.LeaderPayoutStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,6 +13,7 @@ import lombok.*;
 @Data
 @Entity
 @Table(name = "LeaderPayoutTB")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class LeaderPayoutTB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,4 +1,6 @@
 package com.example.demo.Models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -11,6 +13,7 @@ import lombok.*;
 @Entity
 @Table(name = "ReceiptTB")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ReceiptTB 
 {
 
@@ -46,14 +49,15 @@ public class ReceiptTB
     @Column(name = "TipAmount", precision = 19, scale = 4)
     private BigDecimal tipAmount;
 
-    @Column(name = "DiscountAmount", precision = 19, scale = 4)
-    private BigDecimal discountAmount;
-
     // Computed column in SQL Server → read-only in JPA
     @Column(name = "GrandTotal", precision = 19, scale = 4, insertable = false, updatable = false)
     private BigDecimal grandTotal;
 
     @Column(name = "ExtractedAt", nullable = false)
     private LocalDateTime extractedAt;
-	
+
+    @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL, orphanRemoval = true)
+    @com.fasterxml.jackson.annotation.JsonManagedReference
+    private java.util.List<ReceiptItemTB> receiptItems = new java.util.ArrayList<>();
+
 }

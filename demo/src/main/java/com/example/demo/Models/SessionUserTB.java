@@ -3,6 +3,7 @@ package com.example.demo.Models;
 import com.example.demo.Models.Enums.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "SessionUserTB")
 @NoArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SessionUserTB {
 	@Column(name = "SessionUserId")
 	@Id

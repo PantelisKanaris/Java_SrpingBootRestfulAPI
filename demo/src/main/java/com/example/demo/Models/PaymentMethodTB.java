@@ -3,7 +3,8 @@ package com.example.demo.Models;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @NoArgsConstructor
@@ -14,29 +15,28 @@ public class PaymentMethodTB {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PaymentMethodId")
 	private Long paymentMethodId;
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	// name is the foreign key column in this table
-	// referencedColumnName is the primary key column in the target table
-	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
-	@JsonBackReference
-	private UserTB user;
-	@Column(name = "ProviderName")
-	private String providerName;
-	@Column(name = "MethodReference")
-	private String methodReference;
-	@Column(name = "Brand")
+
+	@Column(name = "Brand", length = 40)
 	private String brand;
-	@Column(name = "Last4")
+
+	@Column(name = "Last4", length = 4)
 	private String last4;
+
 	@Column(name = "ExpMonth")
 	private Integer expMonth;
+
 	@Column(name = "ExpYear")
 	private Integer expYear;
-	@Column(name = "IsDefault")
-	private Boolean isDefault;
+
+	@Column(name = "CardFingerprint", length = 64)
+	private String cardFingerprint;
 
 	@org.hibernate.annotations.CreationTimestamp
 	@Column(name = "CreatedAt")
 	private LocalDateTime createdAt;
+
+	@OneToMany(mappedBy = "paymentMethod", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference(value = "paymentMethod-userPaymentMethods")
+	private java.util.List<UserPaymentMethodTB> userPaymentMethods = new java.util.ArrayList<>();
 
 }

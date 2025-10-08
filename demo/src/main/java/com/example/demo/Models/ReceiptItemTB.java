@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @NoArgsConstructor
 @Entity
 @Table(name = "ReceiptItemTB")
+@com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ReceiptItemTB {
 
 	@Id
@@ -40,9 +41,23 @@ public class ReceiptItemTB {
 	@Column(name = "UnitPrice", precision = 19, scale = 4, nullable = false)
 	private BigDecimal unitPrice;
 
-	// 👇 computed column in DB, read-only in JPA
+
+	@Column(name = "DiscountPercent", precision = 5, scale = 2, nullable = false)
+	private BigDecimal discountPercent = BigDecimal.ZERO;
+
+	// Computed columns in DB, read-only in JPA
+	@Column(name = "DiscountPerUnit", precision = 19, scale = 4, insertable = false, updatable = false)
+	private BigDecimal discountPerUnit;
+
+
+	@Column(name = "DiscountedUnitPrice", precision = 19, scale = 4, insertable = false, updatable = false)
+	private BigDecimal discountedUnitPrice;
+
 	@Column(name = "TotalAmount", precision = 19, scale = 4, insertable = false, updatable = false)
 	private BigDecimal totalAmount;
+
+	@Column(name = "DiscountedTotal", precision = 19, scale = 4, insertable = false, updatable = false)
+	private BigDecimal discountedTotal;
 
 	@Column(name = "Notes", length = 500)
 	private String notes;

@@ -1,5 +1,7 @@
 package com.example.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,12 +12,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import java.util.Date;
 
 @Entity
 @Table(name = "SessionTB")
 @NoArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SessionTB {
 	@Column(name = "SessionId")
 	@Id
@@ -43,8 +45,12 @@ public class SessionTB {
 	@Column(name = "StartedAt")
 	private LocalDateTime createdAt;
 
+
 	@Column(name = "ClosedAt")
 	private LocalDateTime closedAt;
+
+	@Column(name = "OneOff", nullable = false)
+	private Boolean oneOff = true;
 
 	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference

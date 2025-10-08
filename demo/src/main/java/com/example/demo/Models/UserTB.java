@@ -35,16 +35,9 @@ public class UserTB {
 	@Column(name = "AvatarUrl")
 	private String avatarUrl;
 
-	@Column(name = "PayAccountToken")
-	private String payAccountToken;
-
 	@org.hibernate.annotations.CreationTimestamp
 	@Column(name = "CreatedAt")
 	private LocalDateTime createdAt;
-
-	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
-	private List<PaymentMethodTB> paymentMethods = new ArrayList<>();
 
 	@OneToMany(mappedBy = "leader", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
@@ -57,5 +50,9 @@ public class UserTB {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<LeaderPayoutTB> leaderPayouts = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<UserPaymentMethodTB> userPaymentMethods = new ArrayList<>();
 
 }
