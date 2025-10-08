@@ -1,7 +1,7 @@
 package com.example.demo.Models;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -31,8 +31,10 @@ public class UserTB {
 	private String AvatarUrl;
 	@Column(name = "PayAccountToken")
 	private String PayAccountToken;
-	@Column(name = "CreatedAt")
-	private Date CreatedAt;
+
+		@org.hibernate.annotations.CreationTimestamp
+		@Column(name = "CreatedAt")
+		private LocalDateTime CreatedAt;
 
 	@OneToMany(mappedBy = "User")
 	private List<PaymentMethodTB> PaymentMethods = new ArrayList<>();
@@ -43,7 +45,7 @@ public class UserTB {
 	@OneToMany(mappedBy = "User", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<SessionUserTB> SessionMemberships = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "User", cascade = CascadeType.ALL, orphanRemoval = true)
 	private java.util.List<LeaderPayoutTB> LeaderPayouts = new java.util.ArrayList<>();
 
 }

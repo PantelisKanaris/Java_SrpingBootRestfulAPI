@@ -3,7 +3,7 @@ package com.example.demo.Models;
 import com.example.demo.Models.Enums.*;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "SessionUserTB")
@@ -21,9 +21,9 @@ public class SessionUserTB {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
-	@Enumerated(EnumType.STRING)
 	private UserTB User;
-
+	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "Role", nullable = false)
 	private Role IsLeader;
 
@@ -31,17 +31,15 @@ public class SessionUserTB {
 	@Column(name = "ParticipantStatus", nullable = false)
 	private UserStatus ParticipantStatus;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "JoinedAt", nullable = false)
-	private Date JoinedAt;
+	private LocalDateTime JoinedAt;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DoneAt")
-	private Date DoneAt;
+	private LocalDateTime DoneAt;
 
 	@OneToMany(mappedBy = "SessionUser", cascade = CascadeType.ALL, orphanRemoval = true)
 	private java.util.List<ItemClaimsTB> ClaimedItems = new java.util.ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "SessionUser", cascade = CascadeType.ALL, orphanRemoval = true)
 	private java.util.List<ParticipantPaymentTB> Payments = new java.util.ArrayList<>();
 

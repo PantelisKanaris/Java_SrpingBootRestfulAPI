@@ -1,6 +1,7 @@
 package com.example.demo.Models;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -50,8 +51,7 @@ public class ReceiptTB
     @Column(name = "GrandTotal", precision = 19, scale = 4, insertable = false, updatable = false)
     private BigDecimal GrandTotal;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "ExtractedAt", nullable = false)
-    private Date ExtractedAt;
+    private LocalDateTime ExtractedAt;
 	
 }

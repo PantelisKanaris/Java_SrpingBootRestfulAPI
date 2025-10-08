@@ -1,6 +1,6 @@
 package com.example.demo.Models;
 import java.math.BigDecimal;
-import java.sql.Date;
+import  java.time.*;
 
 import com.example.demo.Models.Enums.LeaderPayoutStatus;
 
@@ -22,7 +22,7 @@ public class LeaderPayoutTB
 	private SessionTB Session;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="UserdId",referencedColumnName="UserId",nullable=false)
+	@JoinColumn(name="UserId",referencedColumnName="UserId",nullable=false)
 	private UserTB  User;
 	  @Column(name = "Amount", precision = 19, scale = 4, nullable = false)
     private BigDecimal Amount;
@@ -40,13 +40,12 @@ public class LeaderPayoutTB
     @Column(name = "ProviderPayoutId", length = 255)
     private String ProviderPayoutId;
 
-    @Temporal(TemporalType.TIMESTAMP)
+	@org.hibernate.annotations.CreationTimestamp
     @Column(name = "CreatedAt", nullable = false)
-    private Date CreatedAt;
+    private LocalDateTime CreatedAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "ExecutedAt")
-    private Date ExecutedAt;
+    private LocalDateTime ExecutedAt;
 
 
 	

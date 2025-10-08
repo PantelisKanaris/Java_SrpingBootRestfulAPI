@@ -1,22 +1,22 @@
 package com.example.demo.Models;
+
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Date;	
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
 @Data
-@Table(name = "PaymentMethod")
-public class PaymentMethodTB 
-{
+@Table(name = "PaymentMethodTB")
+public class PaymentMethodTB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PaymentMethodId")
 	private Long PaymentMethodId;
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	//name is the foreign key column in this table
-	//referencedColumnName is the primary key column in the target table
-    @JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
+	// name is the foreign key column in this table
+	// referencedColumnName is the primary key column in the target table
+	@JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
 	private UserTB User;
 	@Column(name = "ProviderName")
 	private String ProviderName;
@@ -32,7 +32,9 @@ public class PaymentMethodTB
 	private Integer ExpYear;
 	@Column(name = "IsDefault")
 	private Boolean IsDefault;
+
+	@org.hibernate.annotations.CreationTimestamp
 	@Column(name = "CreatedAt")
-	private Date CreatedAt;
+	private LocalDateTime CreatedAt;
 
 }

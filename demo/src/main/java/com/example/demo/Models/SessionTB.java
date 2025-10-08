@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Date;
 
 @Entity
-@Table(name = "SessionTb")
+@Table(name = "SessionTB")
 @NoArgsConstructor
 @Data
 public class SessionTB {
@@ -33,8 +34,9 @@ public class SessionTB {
 	@Column(name = "Status")
 	private String Status;
 
+	@org.hibernate.annotations.CreationTimestamp
 	@Column(name = "StartedAt")
-	private Date CreatedAt;
+	private LocalDateTime CreatedAt;
 
 	@Column(name = "ClosedAt")
 	private Date ClosedAt;
@@ -45,8 +47,7 @@ public class SessionTB {
 	@OneToMany(mappedBy = "Session", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReceiptTB> Receipts = new ArrayList<>();
 
-
-	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "Session", cascade = CascadeType.ALL, orphanRemoval = true)
 	private java.util.List<LeaderPayoutTB> LeaderPayouts = new java.util.ArrayList<>();
 
 }
