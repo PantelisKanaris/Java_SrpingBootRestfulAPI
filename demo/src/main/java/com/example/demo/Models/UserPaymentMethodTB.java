@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @NoArgsConstructor
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "UserPaymentMethodTB", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {"UserId", "PaymentMethodId"})
 })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserPaymentMethodTB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "ItemClaimsTB", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "ReceiptItemId", "SessionUserId" }) })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ItemClaimsTB {
 
 	@Id

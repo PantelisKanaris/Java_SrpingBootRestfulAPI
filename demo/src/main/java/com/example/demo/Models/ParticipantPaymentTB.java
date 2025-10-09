@@ -3,6 +3,7 @@ package com.example.demo.Models;
 import com.example.demo.Models.Enums.ParticipantPaymentStatus;
 import com.example.demo.Models.Enums.PaymentMethodType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -14,9 +15,8 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "ParticipantPaymentTB", uniqueConstraints = { @UniqueConstraint(columnNames = { "SessionUserId" }) // mirrors
-																													// PARTICIPANTPAYMENT_UN
-})
+@Table(name = "ParticipantPaymentTB")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ParticipantPaymentTB {
 
 	@Id
@@ -48,6 +48,15 @@ public class ParticipantPaymentTB {
 
 	@Column(name = "ProviderPaymentID", length = 255)
 	private String providerPaymentId;
+
+	@Column(name = "ProviderConsentID", length = 255)
+	private String providerConsentId;
+
+	@Column(name = "ProviderPaymentRef", length = 255)
+	private String providerPaymentRef;
+
+	@Column(name = "SettledAt")
+	private LocalDateTime settledAt;
 
 	@org.hibernate.annotations.CreationTimestamp
 	@Column(name = "CreatedAt", nullable = false)

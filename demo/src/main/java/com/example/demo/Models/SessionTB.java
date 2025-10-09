@@ -60,8 +60,5 @@ public class SessionTB {
 	@JsonManagedReference
 	private List<ReceiptTB> receipts = new ArrayList<>();
 
-	@OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
-	private List<LeaderPayoutTB> leaderPayouts = new ArrayList<>();
 
 }

@@ -3,6 +3,7 @@ package com.example.demo.Models;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -10,9 +11,9 @@ import lombok.*;
 
 @NoArgsConstructor
 @Data
-
 @Entity
 @Table(name = "UserTB")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserTB {
 
 	@Id
@@ -46,10 +47,6 @@ public class UserTB {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<SessionUserTB> sessionMemberships = new ArrayList<>();
-
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
-	private List<LeaderPayoutTB> leaderPayouts = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference

@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @NoArgsConstructor
 @Data
 @Table(name = "PaymentMethodTB")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PaymentMethodTB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
